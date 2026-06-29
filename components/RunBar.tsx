@@ -1,4 +1,4 @@
-import { FC, ReactNode } from 'react';
+import { FC } from 'react';
 import { C } from '../lib/constants';
 
 export interface RunBarProps {
@@ -10,11 +10,6 @@ export interface RunBarProps {
   runLabel?: string;
 }
 
-/**
- * Bottom bar for each input box with a left auxiliary button and a primary
- * call‑to‑action on the right. It handles disabled and loading states
- * gracefully.
- */
 const RunBar: FC<RunBarProps> = ({ leftAction, leftLabel, onRun, disabled, loading, runLabel = 'Run' }) => (
   <div
     style={{
@@ -22,25 +17,27 @@ const RunBar: FC<RunBarProps> = ({ leftAction, leftLabel, onRun, disabled, loadi
       borderTop: `1px solid ${C.border}`,
       display: 'flex',
       alignItems: 'center',
-      justifyContent: 'space-between',
+      justifyContent: leftLabel ? 'space-between' : 'flex-end',
     }}
   >
-    <button
-      onClick={leftAction}
-      style={{
-        background: 'transparent',
-        border: `1px solid ${C.border}`,
-        borderRadius: '5px',
-        color: C.muted,
-        cursor: 'pointer',
-        fontSize: '11px',
-        padding: '7px 14px',
-        fontFamily: 'inherit',
-        letterSpacing: '0.5px',
-      }}
-    >
-      {leftLabel}
-    </button>
+    {leftLabel && (
+      <button
+        onClick={leftAction}
+        style={{
+          background: 'transparent',
+          border: `1px solid ${C.border}`,
+          borderRadius: '5px',
+          color: C.muted,
+          cursor: 'pointer',
+          fontSize: '11px',
+          padding: '7px 14px',
+          fontFamily: 'inherit',
+          letterSpacing: '0.5px',
+        }}
+      >
+        {leftLabel}
+      </button>
+    )}
     <button
       onClick={onRun}
       disabled={disabled || loading}
