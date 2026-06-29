@@ -1,6 +1,6 @@
 # Aster Health
 
-**Healthcare data infrastructure for people who live across borders.**
+**Clinical operations interface for cross-border healthcare infrastructure.**
 
 When someone moves between health systems — between countries, between insurers, between any kind of border — their medical history fragments. Records sit in incompatible formats, different languages, separate institutions that were never built to talk to each other. A patient arriving in Los Angeles from Mumbai carries years of care in a form no US provider can read, trust, or act on. So the labs get re-run. The vaccines get repeated. The chronic conditions get re-diagnosed from scratch. The cost is paid in money, in time, and sometimes in outcomes.
 
@@ -24,6 +24,8 @@ Each tool runs against nine synthetic patients — four hand-crafted clinical na
 A Next.js frontend talks to server-side API routes. Two tools (Pipeline Auditor, Coding Assistant) call the Anthropic API for live inference. Two tools (Record Navigator, Continuity Engine) query Snowflake directly via RSA key-pair authenticated connections, reading from pre-computed dbt models and Cortex LLM outputs built by [aster-analytics](https://github.com/JulianCKelly/aster-analytics).
 
 Keeping inference server-side keeps the API key out of the client and removes the output-size limits of a browser sandbox. The Snowflake integration demonstrates the full stack: a Dagster-orchestrated pipeline generates FHIR data, loads it into Snowflake, runs dbt transformations and Cortex LLM enrichment, and surfaces the results here in the interface layer.
+
+Tools are oriented toward clinical operations, care coordination, and data engineering roles — not end patients. The patient-facing layer is a future build on top of this infrastructure.
 
 Intended structure: Public Benefit Corporation, mission-aligned capital only.
 
