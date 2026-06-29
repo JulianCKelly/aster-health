@@ -9,7 +9,7 @@ import ErrorBanner from '../../components/ErrorBanner';
 import StatTile from '../../components/StatTile';
 import Badge from '../../components/Badge';
 import { C, CODE_SYSTEMS, SEV } from '../../lib/constants';
-import { SAMPLE_NOTE } from '../../lib/prompts';
+
 import { callAsterTool } from '../../lib/api';
 
 /**
@@ -60,8 +60,8 @@ export default function CoderPage() {
           />
         </div>
         <RunBar
-          leftLabel="Load sample note"
-          leftAction={() => setInput(SAMPLE_NOTE)}
+          leftLabel="Load warehouse note"
+          leftAction={async () => { const r = await fetch('/api/sample-note'); const d = await r.json(); if (d.note) setInput(d.note); }}
           onRun={run}
           disabled={!input.trim()}
           loading={loading}
