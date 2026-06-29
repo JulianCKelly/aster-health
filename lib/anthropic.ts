@@ -27,7 +27,7 @@ export async function runClaudeJson({
   if (!apiKey) {
     throw new Error("Missing ANTHROPIC_API_KEY environment variable.");
   }
-  const model = process.env.ANTHROPIC_MODEL || "claude-sonnet-4-20250514";
+  const model = process.env.ANTHROPIC_MODEL || "claude-sonnet-4-5";
   const fullPrompt = `${systemPrompt}\n\n---INPUT---\n${userContent}`;
 
   let response: Response;
