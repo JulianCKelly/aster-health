@@ -21,7 +21,7 @@ Each tool runs against a shared patient narrative — Priya Sharma, an immigrant
 
 ## Architecture
 
-A Next.js frontend talks to server-side API routes, which call the Anthropic API. Keeping inference server-side keeps the API key out of the client and removes the output-size limits of a browser sandbox. The longer-term system extends this into a multi-stage ingestion pipeline — classification, format-specific extraction, schema normalization, and quality review — with human escalation on low-confidence output. This demo is the proof of concept for the output layer; the pipeline is the production moat.
+A Next.js frontend talks to server-side API routes, which call the Anthropic API. Keeping inference server-side keeps the API key out of the client and removes the output-size limits of a browser sandbox. The longer-term system extends this into a multi-stage ingestion pipeline — classification, format-specific extraction, schema normalization, and quality review — with human escalation on low-confidence output. This demo is the proof of concept for the output layer. The pipeline layer — HL7/FHIR ingestion, dbt-modeled clinical facts, Snowflake Cortex LLM enrichment — is built in [aster-analytics](https://github.com/JulianCKelly/aster-analytics) and is the production moat.
 
 Intended structure: Public Benefit Corporation, mission-aligned capital only.
 
@@ -71,3 +71,7 @@ Intended structure: Public Benefit Corporation, mission-aligned capital only.
 ## Notes
 
 This demo is intended for illustration purposes only. Do **not** upload real patient information (PHI) into the app. The backend proxy simply forwards requests to Anthropic; in a production environment you would implement additional logging, rate limiting, authentication, audit trails, and database integration.
+
+## Related
+
+[aster-analytics](https://github.com/JulianCKelly/aster-analytics) — the Snowflake + dbt + Cortex pipeline that serves as the data infrastructure layer this interface is built on.
